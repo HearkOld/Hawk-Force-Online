@@ -1,0 +1,122 @@
+CREATE TABLE Accounts(
+	id int IDENTITY(1,1) primary key NOT NULL,
+	Username nvarchar(16) NOT NULL,
+	Password nvarchar(4000) NOT NULL,
+	Email nchar(50) NOT NULL,
+	Secret_Question nvarchar(50) NOT NULL,
+	Secret_Answer nvarchar(50) NOT NULL,
+	Hierarchy smallint NOT NULL default(0),
+	Register_Date datetime NULL,
+	Last_Logon datetime NULL,
+	Last_ip nvarchar(12) NULL,
+	Logged_In bit NOT NULL default(0),
+	Blocked smallint NOT NULL default(0),
+	Block_Days smallint NOT NULL default(0),
+	Name nvarchar(20) NULL,
+	Last_Name nvarchar(100) NULL,
+	Date_of_Birth datetime NULL,
+	Gender nvarchar(20) NULL,
+	Country nvarchar(20) NULL
+)
+GO
+
+CREATE TABLE Characters(
+	id int IDENTITY(1,1) primary key NOT NULL,
+	Account_id int NOT NULL,
+	Name nvarchar(16) NOT NULL,
+	Character_Name nvarchar(50) NULL,
+	Character_Index smallint NOT NULL default(0),
+        Face_Name nvarchar(50) NULL,
+	Face_Index smallint NOT NULL default(0),
+	Actor_id smallint NOT NULL default(1),
+	HP int NOT NULL default(100),
+	MP int NOT NULL default(50),
+	ATK smallint NOT NULL default(1),
+	DEF smallint NOT NULL default(1),
+	SPI smallint NOT NULL default(1),
+	AGI smallint NOT NULL default(1),
+	LVL smallint NOT NULL default(1),
+	Points int NOT NULL default(0),
+	EXP int NOT NULL default(0),
+	Class_id smallint NOT NULL default(1),
+	Gender smallint NOT NULL default(0),
+	Weapon_id smallint NOT NULL default(0),
+	Armor1_id smallint NOT NULL default(0),
+	Armor2_id smallint NOT NULL default(0),
+	Armor3_id smallint NOT NULL default(0),
+	Armor4_id smallint NOT NULL default(0),
+	Armor5_id smallint NOT NULL default(0),
+	Armor6_id smallint NOT NULL default(0),
+	Armor7_id smallint NOT NULL default(0),
+	Armor8_id smallint NOT NULL default(0),
+	Items nvarchar(4000) NULL,
+	Weapons nvarchar(4000) NULL,
+	Armors nvarchar(4000) NULL,
+	Skills nvarchar(4000) NULL,
+	Gold int NOT NULL default(0),
+	Guild int NOT NULL default(0),
+	Map_id int NOT NULL default(1),
+	X_Coord int NOT NULL default(0),
+	Y_Coord int NOT NULL default(0),
+	Blocked smallint NOT NULL default(0),
+	Block_Days smallint NOT NULL default(0),
+	Desktop nvarchar(100) NULL
+)
+GO
+
+CREATE TABLE Guilds(
+	id int IDENTITY(1,1) primary key NOT NULL,
+	Name nvarchar(16) NOT NULL,
+	Master nvarchar(16) NOT NULL,
+	Flag nvarchar(4000) NOT NULL,
+	Score int NOT NULL default(0),
+	Date_Created datetime NULL,
+	Announce nvarchar(50) NULL
+)
+GO
+
+CREATE TABLE Messenger(
+	id int primary key NOT NULL,
+	Friends nvarchar(4000) NULL,
+	PM nvarchar(4000) NULL
+)
+GO
+
+CREATE TABLE Quests(
+	Character_id int NOT NULL,
+	id int NOT NULL,
+	Status smallint NOT NULL default(1),
+	Progress nvarchar(4000) NULL
+)
+GO
+
+CREATE TABLE Switches(
+	Character_id int NOT NULL,
+	id smallint NOT NULL,
+	Value bit NOT NULL
+)
+GO
+
+CREATE TABLE SelfSwitches(
+	Character_id int NOT NULL,
+	Letter nvarchar(1) NOT NULL,
+	Value bit NOT NULL,
+	Event_id int NOT NULL,
+	Map_id int NOT NULL
+)
+GO
+
+CREATE TABLE Variables(
+	Character_id int NOT NULL,
+	id smallint NOT NULL,
+	Value nvarchar(50) NOT NULL
+)
+GO
+
+CREATE TABLE Warehouse(
+	id int primary key NOT NULL,
+	Items nvarchar(4000) NULL,
+	Weapons nvarchar(4000) NULL,
+	Armors nvarchar(4000) NULL,
+	Gold int NOT NULL default(0)
+)
